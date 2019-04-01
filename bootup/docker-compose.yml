@@ -1,0 +1,25 @@
+version: '3.2'
+services:
+  influxdb:
+    image: influxdb
+    volumes:
+      - $ROOT_PATH/data/influxdb:/var/lib/influxdb
+    environment:
+      - INFLUXDB_DB=lianjia
+      - INFLUXDB_USER=admin
+      - INCLUFDB_UESR_PASSWORD=password
+  grafana:
+    image: grafana/grafana
+    links:
+      - influxdb
+    ports:
+      - 3033:3000
+    volumes:
+      - $ROOT_PATH/data/grafana:/var/lib/grafana
+  scrapy:
+    image: scrapy
+    command: bash -c "sleep 360d"
+    links:
+      - influxdb
+    volumes:
+      - $ROOT_PATH/src:/app

@@ -1,0 +1,1031 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 1,
+  "iteration": 1554081847795,
+  "links": [],
+  "panels": [
+    {
+      "columns": [],
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 4,
+      "links": [],
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "成交时间",
+          "dateFormat": "YYYY-MM-DD",
+          "pattern": "Time",
+          "type": "date"
+        },
+        {
+          "alias": "房子大小",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 1,
+          "pattern": "size",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "成交价格 (万元)",
+          "colorMode": "value",
+          "colors": [
+            "#F2495C",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "deal_price",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "挂牌价格",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "listing_price",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "户型",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "house_type",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "小区",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": false,
+          "mappingType": 1,
+          "pattern": "community",
+          "preserveFormat": false,
+          "sanitize": false,
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "alias": "成交周期",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "transaction_cycle",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "单价 (元 / 平)",
+          "colorMode": "row",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "unit_deal_price",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "groupBy": [],
+          "measurement": "deal_history",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "deal_price"
+                ],
+                "type": "field"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "listing_price"
+                ],
+                "type": "field"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "house_type"
+                ],
+                "type": "field"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "community"
+                ],
+                "type": "field"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "size"
+                ],
+                "type": "field"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "transaction_cycle"
+                ],
+                "type": "field"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "unit_deal_price"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "community",
+              "operator": "=~",
+              "value": "/^$community$/"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "成交历史记录",
+      "transform": "table",
+      "type": "table"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 10
+      },
+      "id": 2,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "paceLength": 10,
+      "percentage": false,
+      "pointradius": 2,
+      "points": true,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_community",
+          "groupBy": [
+            {
+              "params": [
+                "community"
+              ],
+              "type": "tag"
+            }
+          ],
+          "measurement": "deal_history",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"deal_price\" FROM \"deal_price\" WHERE (\"community\" = '东方夏威夷南岸二期') AND $timeFilter GROUP BY \"community\"",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "unit_deal_price"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "community",
+              "operator": "=",
+              "value": "东方夏威夷南岸二期"
+            },
+            {
+              "condition": "OR",
+              "key": "community",
+              "operator": "=",
+              "value": "东贸国际"
+            },
+            {
+              "condition": "OR",
+              "key": "community",
+              "operator": "=",
+              "value": "夏威夷蓝湾"
+            },
+            {
+              "condition": "OR",
+              "key": "community",
+              "operator": "=",
+              "value": "圣得西区"
+            },
+            {
+              "condition": "OR",
+              "key": "community",
+              "operator": "=",
+              "value": "九里香堤"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "成交均价",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": null,
+          "format": "currencyJPY",
+          "label": "元 / 平",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "currencyJPY",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "schemaVersion": 18,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "text": "青年新城",
+          "value": "青年新城"
+        },
+        "datasource": "InfluxDB",
+        "definition": "SELECT \"community\" FROM \"deal_history\"",
+        "hide": 0,
+        "includeAll": false,
+        "label": "小区",
+        "multi": false,
+        "name": "community",
+        "options": [
+          {
+            "selected": false,
+            "text": "青年新城",
+            "value": "青年新城"
+          },
+          {
+            "selected": false,
+            "text": "东方夏威夷南岸一期",
+            "value": "东方夏威夷南岸一期"
+          },
+          {
+            "selected": false,
+            "text": "星河185",
+            "value": "星河185"
+          },
+          {
+            "selected": false,
+            "text": "美林新东城",
+            "value": "美林新东城"
+          },
+          {
+            "selected": false,
+            "text": "首尔甜城MOBO公寓",
+            "value": "首尔甜城MOBO公寓"
+          },
+          {
+            "selected": false,
+            "text": "@北京",
+            "value": "@北京"
+          },
+          {
+            "selected": false,
+            "text": "潮白人家",
+            "value": "潮白人家"
+          },
+          {
+            "selected": false,
+            "text": "纳丹堡",
+            "value": "纳丹堡"
+          },
+          {
+            "selected": false,
+            "text": "美林湾",
+            "value": "美林湾"
+          },
+          {
+            "selected": false,
+            "text": "天洋城",
+            "value": "天洋城"
+          },
+          {
+            "selected": false,
+            "text": "天洋城4代南区",
+            "value": "天洋城4代南区"
+          },
+          {
+            "selected": false,
+            "text": "福城上上城六期",
+            "value": "福城上上城六期"
+          },
+          {
+            "selected": false,
+            "text": "首尔甜城一期",
+            "value": "首尔甜城一期"
+          },
+          {
+            "selected": false,
+            "text": "天洋城4代北区",
+            "value": "天洋城4代北区"
+          },
+          {
+            "selected": false,
+            "text": "福成公寓A",
+            "value": "福成公寓A"
+          },
+          {
+            "selected": false,
+            "text": "福成公寓B",
+            "value": "福成公寓B"
+          },
+          {
+            "selected": false,
+            "text": "金桥嘉苑",
+            "value": "金桥嘉苑"
+          },
+          {
+            "selected": false,
+            "text": "东贸国际",
+            "value": "东贸国际"
+          },
+          {
+            "selected": false,
+            "text": "夏威夷蓝湾",
+            "value": "夏威夷蓝湾"
+          },
+          {
+            "selected": false,
+            "text": "星河皓月",
+            "value": "星河皓月"
+          },
+          {
+            "selected": false,
+            "text": "紫竹园A区",
+            "value": "紫竹园A区"
+          },
+          {
+            "selected": false,
+            "text": "福城上上城三季",
+            "value": "福城上上城三季"
+          },
+          {
+            "selected": false,
+            "text": "天子庄园二期",
+            "value": "天子庄园二期"
+          },
+          {
+            "selected": false,
+            "text": "潮白星光公馆",
+            "value": "潮白星光公馆"
+          },
+          {
+            "selected": false,
+            "text": "福城上上城五期",
+            "value": "福城上上城五期"
+          },
+          {
+            "selected": false,
+            "text": "首尔甜城二期",
+            "value": "首尔甜城二期"
+          },
+          {
+            "selected": false,
+            "text": "福泽御园",
+            "value": "福泽御园"
+          },
+          {
+            "selected": false,
+            "text": "45所2区",
+            "value": "45所2区"
+          },
+          {
+            "selected": false,
+            "text": "华泰靖湘园",
+            "value": "华泰靖湘园"
+          },
+          {
+            "selected": true,
+            "text": "九里香堤",
+            "value": "九里香堤"
+          },
+          {
+            "selected": false,
+            "text": "星月云河",
+            "value": "星月云河"
+          },
+          {
+            "selected": false,
+            "text": "燕京航城",
+            "value": "燕京航城"
+          },
+          {
+            "selected": false,
+            "text": "东方夏威夷",
+            "value": "东方夏威夷"
+          },
+          {
+            "selected": false,
+            "text": "欧逸水岸",
+            "value": "欧逸水岸"
+          },
+          {
+            "selected": false,
+            "text": "雷捷时代广场",
+            "value": "雷捷时代广场"
+          },
+          {
+            "selected": false,
+            "text": "东方夏威夷北岸",
+            "value": "东方夏威夷北岸"
+          },
+          {
+            "selected": false,
+            "text": "东方一品城",
+            "value": "东方一品城"
+          },
+          {
+            "selected": false,
+            "text": "福城上上城二季",
+            "value": "福城上上城二季"
+          },
+          {
+            "selected": false,
+            "text": "达观别墅",
+            "value": "达观别墅"
+          },
+          {
+            "selected": false,
+            "text": "金玉源(燕郊)",
+            "value": "金玉源(燕郊)"
+          },
+          {
+            "selected": false,
+            "text": "东方夏威夷南岸二期",
+            "value": "东方夏威夷南岸二期"
+          },
+          {
+            "selected": false,
+            "text": "意华小区",
+            "value": "意华小区"
+          },
+          {
+            "selected": false,
+            "text": "新锐时代",
+            "value": "新锐时代"
+          },
+          {
+            "selected": false,
+            "text": "鼎盛家园二期",
+            "value": "鼎盛家园二期"
+          },
+          {
+            "selected": false,
+            "text": "风尚国际公寓",
+            "value": "风尚国际公寓"
+          },
+          {
+            "selected": false,
+            "text": "新坐标",
+            "value": "新坐标"
+          },
+          {
+            "selected": false,
+            "text": "福泽颐园",
+            "value": "福泽颐园"
+          },
+          {
+            "selected": false,
+            "text": "圣得西区",
+            "value": "圣得西区"
+          },
+          {
+            "selected": false,
+            "text": "天子庄园五期",
+            "value": "天子庄园五期"
+          },
+          {
+            "selected": false,
+            "text": "美林君渡",
+            "value": "美林君渡"
+          },
+          {
+            "selected": false,
+            "text": "天佑爱上岛",
+            "value": "天佑爱上岛"
+          },
+          {
+            "selected": false,
+            "text": "忆江南",
+            "value": "忆江南"
+          },
+          {
+            "selected": false,
+            "text": "威毕欧溪谷",
+            "value": "威毕欧溪谷"
+          },
+          {
+            "selected": false,
+            "text": "港中旅·海泉湾",
+            "value": "港中旅·海泉湾"
+          },
+          {
+            "selected": false,
+            "text": "华堂高尔夫",
+            "value": "华堂高尔夫"
+          },
+          {
+            "selected": false,
+            "text": "嘉都",
+            "value": "嘉都"
+          },
+          {
+            "selected": false,
+            "text": "中核二四小区",
+            "value": "中核二四小区"
+          },
+          {
+            "selected": false,
+            "text": "燕京新城",
+            "value": "燕京新城"
+          },
+          {
+            "selected": false,
+            "text": "维多利亚",
+            "value": "维多利亚"
+          },
+          {
+            "selected": false,
+            "text": "东贸国际公寓",
+            "value": "东贸国际公寓"
+          },
+          {
+            "selected": false,
+            "text": "青年社区二期",
+            "value": "青年社区二期"
+          },
+          {
+            "selected": false,
+            "text": "夏威夷南岸玫瑰花园",
+            "value": "夏威夷南岸玫瑰花园"
+          },
+          {
+            "selected": false,
+            "text": "中兴和园",
+            "value": "中兴和园"
+          },
+          {
+            "selected": false,
+            "text": "汇福悦榕湾",
+            "value": "汇福悦榕湾"
+          },
+          {
+            "selected": false,
+            "text": "百花家园",
+            "value": "百花家园"
+          },
+          {
+            "selected": false,
+            "text": "中核二三东院",
+            "value": "中核二三东院"
+          },
+          {
+            "selected": false,
+            "text": "金谷美丽城",
+            "value": "金谷美丽城"
+          },
+          {
+            "selected": false,
+            "text": "铁三局小区",
+            "value": "铁三局小区"
+          },
+          {
+            "selected": false,
+            "text": "首钢机械厂",
+            "value": "首钢机械厂"
+          },
+          {
+            "selected": false,
+            "text": "鑫乐汇",
+            "value": "鑫乐汇"
+          },
+          {
+            "selected": false,
+            "text": "湾仔城",
+            "value": "湾仔城"
+          },
+          {
+            "selected": false,
+            "text": "黄金花园",
+            "value": "黄金花园"
+          },
+          {
+            "selected": false,
+            "text": "燕灵小区",
+            "value": "燕灵小区"
+          },
+          {
+            "selected": false,
+            "text": "北欧小镇",
+            "value": "北欧小镇"
+          },
+          {
+            "selected": false,
+            "text": "橄榄谷",
+            "value": "橄榄谷"
+          },
+          {
+            "selected": false,
+            "text": "欧逸丽庭一期",
+            "value": "欧逸丽庭一期"
+          },
+          {
+            "selected": false,
+            "text": "道桥职工家属院",
+            "value": "道桥职工家属院"
+          },
+          {
+            "selected": false,
+            "text": "天子庄园四期",
+            "value": "天子庄园四期"
+          },
+          {
+            "selected": false,
+            "text": "税苑小区",
+            "value": "税苑小区"
+          },
+          {
+            "selected": false,
+            "text": "普罗旺斯",
+            "value": "普罗旺斯"
+          },
+          {
+            "selected": false,
+            "text": "燕宁小区",
+            "value": "燕宁小区"
+          },
+          {
+            "selected": false,
+            "text": "阳光小区南区",
+            "value": "阳光小区南区"
+          },
+          {
+            "selected": false,
+            "text": "育博苑",
+            "value": "育博苑"
+          },
+          {
+            "selected": false,
+            "text": "地矿部562综合大队",
+            "value": "地矿部562综合大队"
+          },
+          {
+            "selected": false,
+            "text": "怡景苑",
+            "value": "怡景苑"
+          },
+          {
+            "selected": false,
+            "text": "天子庄园一期",
+            "value": "天子庄园一期"
+          },
+          {
+            "selected": false,
+            "text": "文化大厦",
+            "value": "文化大厦"
+          },
+          {
+            "selected": false,
+            "text": "中燕小区",
+            "value": "中燕小区"
+          },
+          {
+            "selected": false,
+            "text": "香格里拉公寓",
+            "value": "香格里拉公寓"
+          },
+          {
+            "selected": false,
+            "text": "紫竹园B区",
+            "value": "紫竹园B区"
+          },
+          {
+            "selected": false,
+            "text": "行宫花园",
+            "value": "行宫花园"
+          },
+          {
+            "selected": false,
+            "text": "金燕学院府",
+            "value": "金燕学院府"
+          },
+          {
+            "selected": false,
+            "text": "世纪名苑",
+            "value": "世纪名苑"
+          },
+          {
+            "selected": false,
+            "text": "富地广场",
+            "value": "富地广场"
+          },
+          {
+            "selected": false,
+            "text": "祥馨日升小区",
+            "value": "祥馨日升小区"
+          },
+          {
+            "selected": false,
+            "text": "上上城青年社区三期",
+            "value": "上上城青年社区三期"
+          },
+          {
+            "selected": false,
+            "text": "雷捷小区",
+            "value": "雷捷小区"
+          },
+          {
+            "selected": false,
+            "text": "百合东园",
+            "value": "百合东园"
+          },
+          {
+            "selected": false,
+            "text": "中建二局南区",
+            "value": "中建二局南区"
+          },
+          {
+            "selected": false,
+            "text": "阳光小区北区",
+            "value": "阳光小区北区"
+          },
+          {
+            "selected": false,
+            "text": "北蔡新村",
+            "value": "北蔡新村"
+          },
+          {
+            "selected": false,
+            "text": "鑫岭家园",
+            "value": "鑫岭家园"
+          },
+          {
+            "selected": false,
+            "text": "中骏四季花都",
+            "value": "中骏四季花都"
+          },
+          {
+            "selected": false,
+            "text": "中交一局五公司家属楼",
+            "value": "中交一局五公司家属楼"
+          },
+          {
+            "selected": false,
+            "text": "鼎盛家园",
+            "value": "鼎盛家园"
+          },
+          {
+            "selected": false,
+            "text": "三河润旭商贸中心",
+            "value": "三河润旭商贸中心"
+          },
+          {
+            "selected": false,
+            "text": "上上城理想新城",
+            "value": "上上城理想新城"
+          },
+          {
+            "selected": false,
+            "text": "燕郊电子城小区",
+            "value": "燕郊电子城小区"
+          },
+          {
+            "selected": false,
+            "text": "银燕小区(燕郊)",
+            "value": "银燕小区(燕郊)"
+          },
+          {
+            "selected": false,
+            "text": "王各庄小区",
+            "value": "王各庄小区"
+          },
+          {
+            "selected": false,
+            "text": "莱蒙顺泽水榭花城",
+            "value": "莱蒙顺泽水榭花城"
+          },
+          {
+            "selected": false,
+            "text": "雷捷时代广场二期",
+            "value": "雷捷时代广场二期"
+          },
+          {
+            "selected": false,
+            "text": "亿丰9号院",
+            "value": "亿丰9号院"
+          },
+          {
+            "selected": false,
+            "text": "富鼎中心公寓",
+            "value": "富鼎中心公寓"
+          },
+          {
+            "selected": false,
+            "text": "冶金西区",
+            "value": "冶金西区"
+          },
+          {
+            "selected": false,
+            "text": "电厂生活区",
+            "value": "电厂生活区"
+          },
+          {
+            "selected": false,
+            "text": "长安壹线",
+            "value": "长安壹线"
+          }
+        ],
+        "query": "SELECT \"community\" FROM \"deal_history\"",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now/y",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "燕郊房产成交",
+  "uid": "ObSy-56ik",
+  "version": 7
+}
