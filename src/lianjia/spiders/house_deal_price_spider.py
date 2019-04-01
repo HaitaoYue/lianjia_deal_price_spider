@@ -21,9 +21,7 @@ class HousePriceSpider(scrapy.Spider):
     name = "house_deal_price"
 
     def start_requests(self):
-        urls = [
-            "https://lf.lianjia.com/chengjiao/yanjiao/"
-        ]
+        urls = ["https://lf.lianjia.com/chengjiao/yanjiao/"]
 
         for url in urls:
             yield scrapy.Request(url=url, callback=self.parse)
@@ -40,16 +38,33 @@ class HousePriceSpider(scrapy.Spider):
         community = house_title.split(" ")[0]
         house_type = house_title.split(" ")[1]
         size = house_title.split(" ")[2]
-        size = int(re.search(r'\d+', size).group())
-        listing_price = selector.xpath('//div[has-class("msg")]/span')[0].xpath('.//label/text()').get()
-        transaction_cycle = selector.xpath('//div[has-class("msg")]/span')[1].xpath('.//label/text()').get()
-        price_adjustment_count = selector.xpath('//div[has-class("msg")]/span')[2].xpath('.//label/text()').get()
-        look_count = selector.xpath('//div[has-class("msg")]/span')[3].xpath('.//label/text()').get()
-        attention_count = selector.xpath('//div[has-class("msg")]/span')[4].xpath('.//label/text()').get()
-        listing_date = selector.xpath('//div[has-class("transaction")]/div[has-class("content")]/ul/li')[2].xpath("./text()").get().strip()
+        size = int(re.search(r"\d+", size).group())
+        listing_price = (
+            selector.xpath('//div[has-class("msg")]/span')[0].xpath(".//label/text()").get()
+        )
+        transaction_cycle = (
+            selector.xpath('//div[has-class("msg")]/span')[1].xpath(".//label/text()").get()
+        )
+        price_adjustment_count = (
+            selector.xpath('//div[has-class("msg")]/span')[2].xpath(".//label/text()").get()
+        )
+        look_count = (
+            selector.xpath('//div[has-class("msg")]/span')[3].xpath(".//label/text()").get()
+        )
+        attention_count = (
+            selector.xpath('//div[has-class("msg")]/span')[4].xpath(".//label/text()").get()
+        )
+        listing_date = (
+            selector.xpath('//div[has-class("transaction")]/div[has-class("content")]/ul/li')[2]
+            .xpath("./text()")
+            .get()
+            .strip()
+        )
         listing_date = datetime.strptime(listing_date, "%Y-%m-%d")
 
-        deal_date = selector.xpath('//div[has-class("house-title")]/div/span/text()').get().split(" ")[0]
+        deal_date = (
+            selector.xpath('//div[has-class("house-title")]/div/span/text()').get().split(" ")[0]
+        )
         deal_date = datetime.strptime(deal_date, "%Y.%m.%d")
 
         real_transaction_cycle = (deal_date - listing_date).days
@@ -67,17 +82,19 @@ class HousePriceSpider(scrapy.Spider):
             "house_type": house_type,
             "size": size,
         }
-        points = [{
-            "measurement": "deal_history",
-            "time": deal_date,
-            "tags": {
-                "id": deal_id,
-                "community": community,
-                "house_type": house_type,
-                "size": size,
-            },
-            "fields": result
-        }]
+        points = [
+            {
+                "measurement": "deal_history",
+                "time": deal_date,
+                "tags": {
+                    "id": deal_id,
+                    "community": community,
+                    "house_type": house_type,
+                    "size": size,
+                },
+                "fields": result,
+            }
+        ]
         db_client.write_points(points)
         # print(tabulate([result], headers="keys", tablefmt="fancy_grid"))
 
@@ -94,6 +111,6 @@ class HousePriceSpider(scrapy.Spider):
 
         page_box = sel.xpath('//div[has-class("house-lst-page-box")]/@page-data').get()
         total_page = json.loads(page_box).get("totalPage")
-        for i in range(2, total_page+1):
+        for i in range(2, total_page + 1):
             link = response.urljoin("/chengjiao/yanjiao/pg%s" % i)
             yield scrapy.Request(link, callback=self.parse_houses)
